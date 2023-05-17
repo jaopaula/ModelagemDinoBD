@@ -1,0 +1,52 @@
+CREATE TABLE Dino 
+( 
+ Nome INT PRIMARY KEY,  
+ Periodo INT,  
+ Classe INT,  
+); 
+
+CREATE TABLE Habitat 
+( 
+ Localizacao INT PRIMARY KEY,  
+ Clima INT,  
+ Vegetacao INT,  
+); 
+
+CREATE TABLE Fossil 
+( 
+ Localizacao INT PRIMARY KEY,  
+ Idade INT,  
+ Preservacao INT,  
+); 
+
+CREATE TABLE Ecossistema 
+( 
+ Fluxo_energia INT PRIMARY KEY,  
+ Biodiversidade INT,  
+ Ciclos_biogeoquimicos INT,  
+); 
+
+CREATE TABLE Vive 
+( 
+ Nome INT PRIMARY KEY,  
+ Localizacao INT,  
+); 
+
+CREATE TABLE Possui 
+( 
+ Nome INT PRIMARY KEY,  
+ Localizacao INT,  
+); 
+
+CREATE TABLE interacao 
+( 
+ Fluxo_energia INT PRIMARY KEY,  
+ Localizacao INT PRIMARY KEY,  
+); 
+
+ALTER TABLE Vive ADD FOREIGN KEY(Nome) REFERENCES Dino (Nome)
+ALTER TABLE Vive ADD FOREIGN KEY(Localizacao) REFERENCES Habitat (Localizacao)
+ALTER TABLE Possui ADD FOREIGN KEY(Nome) REFERENCES Dino (Nome)
+ALTER TABLE Possui ADD FOREIGN KEY(Localizacao) REFERENCES Fossil (Localizacao)
+ALTER TABLE interacao ADD FOREIGN KEY(Fluxo_energia) REFERENCES Ecossistema (Fluxo_energia)
+ALTER TABLE interacao ADD FOREIGN KEY(Localizacao) REFERENCES Habitat (Localizacao)
